@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#FFFFFF"> <!-- Set a white background for contrast -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Webtoon Image -->
+        <ImageView
+            android:id="@+id/webtoon_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"
+            />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#3F51B5"
+        android:text="Title Placeholder" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="16sp"
+            android:textColor="#757575"
+        android:text="Detailed description placeholder"
+        android:padding="8dp"
+        android:lineSpacingExtra="2dp"/>
+
+        <!-- Rating Bar -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1.0"
+            android:layout_marginTop="16dp"
+            android:progressTint="#FFEB3B"
+        android:backgroundTint="#B0BEC5" />
+
+        <!-- Add to Favorites Button -->
+        <Button
+            android:id="@+id/add_button_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Add to Favorites"
+            android:textAllCaps="false"
+            android:backgroundTint="#4CAF50"
+        android:textColor="@android:color/white" />
+
+        <!-- Open Favorites Activity Button -->
+        <Button
+            android:id="@+id/open_fav_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="View Favorites"
+            android:textAllCaps="false"
+            android:backgroundTint="#1976D2"
+        android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</ScrollView>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    android:background="#FFFFFF"> <!-- White background color -->
+
+    <!-- ImageView with defined height and margin -->
+    <ImageView
+        android:id="@+id/webtoon_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="12dp"
+       /> <!-- Direct background color -->
+
+    <!-- Webtoon title with spacing and updated text color -->
+    <TextView
+        android:id="@+id/webtoon_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#212121"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="4dp"
+    android:maxLines="1"
+    android:ellipsize="end"/>
+
+    <!-- Webtoon description with improved readability -->
+    <TextView
+        android:id="@+id/webtoon_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:lineSpacingExtra="4dp"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textColor="#757575"/> <!-- Light grey color -->
+</LinearLayout>
