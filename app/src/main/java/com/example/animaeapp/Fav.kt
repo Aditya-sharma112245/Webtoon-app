@@ -19,10 +19,10 @@ class Fav : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fav)
 
-        // Initialize the RecyclerView and Adapter
+
         recyclerView = findViewById(R.id.recycler_view_favorites)
 
-        // Initialize adapter with click handling
+
         webtoonAdapter = FavWebtoonAdapter(emptyList()) { webtoon ->
             onWebtoonClick(webtoon)
         }
@@ -30,15 +30,13 @@ class Fav : AppCompatActivity() {
         recyclerView.adapter = webtoonAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Load only favorite webtoons from the database
+
         loadFavorites()
     }
 
-    // Method that will handle what happens when a webtoon is clicked
+
     private fun onWebtoonClick(webtoon: Webtoon) {
-        // Define what happens when a favorite webtoon is clicked
-        // For example, navigate to details screen or show a Toast
-        // Example: Toast.makeText(this, "Clicked on ${webtoon.title}", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun loadFavorites() {

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.animaeapp.R
 import com.example.animaeapp.data.Webtoon
-//import kotlinx.android.synthetic.main.webtoon_item.view.* // Keep this import for synthetic access if needed
+
 
 class WebtoonAdapter(
     private val webtoons: List<Webtoon>,
@@ -18,22 +18,22 @@ class WebtoonAdapter(
 
     class WebtoonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(webtoon: Webtoon, onClick: (Webtoon) -> Unit) {
-            // Access views using findViewById if you prefer not to use synthetic imports
+
             itemView.findViewById<TextView>(R.id.webtoon_title).text = webtoon.title
             itemView.findViewById<TextView>(R.id.webtoon_description).text = webtoon.description
 
-            // Load the image using Glide
+
             Glide.with(itemView.context)
                 .load(webtoon.imageUrl)
                 .into(itemView.findViewById<ImageView>(R.id.webtoon_image))
 
-            // Set the click listener
+
             itemView.setOnClickListener { onClick(webtoon) }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WebtoonViewHolder {
-        // Inflate the layout
+
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_webtoon, parent, false)
         return WebtoonViewHolder(view)
     }

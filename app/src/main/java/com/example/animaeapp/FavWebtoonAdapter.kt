@@ -1,4 +1,4 @@
-// FavWebtoonAdapter.kt
+
 package com.example.animaeapp.ui
 
 import android.view.LayoutInflater
@@ -23,10 +23,10 @@ class FavWebtoonAdapter(
 
         fun bind(webtoon: Webtoon) {
             titleTextView.text = webtoon.title
-            descriptionTextView.text = webtoon.description // Bind the description
-            Glide.with(itemView.context).load(webtoon.imageUrl).into(imageView) // Load the image
+            descriptionTextView.text = webtoon.description
+            Glide.with(itemView.context).load(webtoon.imageUrl).into(imageView)
 
-            itemView.setOnClickListener { itemClick(webtoon) } // Handle item click
+            itemView.setOnClickListener { itemClick(webtoon) }
         }
     }
 
@@ -45,6 +45,6 @@ class FavWebtoonAdapter(
 
     fun submitList(newWebtoons: List<Webtoon>) {
         webtoons = newWebtoons
-        notifyDataSetChanged() // Notify the adapter to refresh the list
+        notifyDataSetChanged()
     }
 }

@@ -10,25 +10,25 @@ import kotlinx.coroutines.launch
 
 class WebtoonViewModel(private val repository: WebtoonRepository) : ViewModel() {
 
-    // LiveData for all webtoons and favorite webtoons
+
     val allWebtoons: LiveData<List<Webtoon>> = repository.allWebtoons
     val favoriteWebtoons: LiveData<List<Webtoon>> = repository.favoriteWebtoons
 
-    // Function to insert a webtoon
+
     fun insert(webtoon: Webtoon) {
         viewModelScope.launch {
             repository.insert(webtoon)
         }
     }
 
-    // Function to update a webtoon
+
     fun update(webtoon: Webtoon) {
         viewModelScope.launch {
             repository.update(webtoon)
         }
     }
 
-    // Function to get a webtoon by ID
+
     fun getWebtoonById(id: Int): LiveData<Webtoon?> {
         val result = MutableLiveData<Webtoon?>()
         viewModelScope.launch {

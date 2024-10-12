@@ -22,8 +22,8 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var descriptionTextView: TextView
     private lateinit var imageView: ImageView
     private lateinit var ratingBar: RatingBar
-    private lateinit var favButton: Button // Button to navigate to Favorites Activity
-    private lateinit var addToFavButton: Button // Button to add to favorites
+    private lateinit var favButton: Button
+    private lateinit var addToFavButton: Button
     private lateinit var db: WebtoonDatabase
 
     @SuppressLint("MissingInflatedId")
@@ -35,38 +35,38 @@ class DetailActivity : AppCompatActivity() {
         descriptionTextView = findViewById(R.id.description_text)
         imageView = findViewById(R.id.webtoon_image)
         ratingBar = findViewById(R.id.ratingBar)
-        favButton = findViewById(R.id.open_fav_button) // Initialize the Favorites button
-        addToFavButton = findViewById(R.id.add_button_favorite) // Initialize the Add to Favorites button
+        favButton = findViewById(R.id.open_fav_button)
+        addToFavButton = findViewById(R.id.add_button_favorite)
 
-        // Initialize the database
+
         db = WebtoonDatabase.getDatabase(applicationContext)
 
-        // Get the Webtoon object from the intent
+
         val webtoon = intent.getParcelableExtra<Webtoon>("webtoon")
 
         webtoon?.let {
             titleTextView.text = it.title
-            descriptionTextView.text = it.detailedDescription // Display detailed description here
+            descriptionTextView.text = it.detailedDescription
             Glide.with(this).load(it.imageUrl).into(imageView)
 
-            // Load and display the rating
+
             loadRating(it.id)
 
-            // Set up a listener for rating changes
+
             ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
-                // Save the rating to the database
+
                 saveRating(it.id, rating.toInt())
             }
         }
 
-        // Set up the button click listener for adding to favorites
+
         addToFavButton.setOnClickListener {
             webtoon?.let { webtoonToAdd ->
-                addToFavorites(webtoonToAdd) // Call the function to add to favorites
+                addToFavorites(webtoonToAdd)
             }
         }
 
-        // Set up the Favorites button to navigate to the FavoritesActivity
+
         favButton.setOnClickListener {
             val intent = Intent(this, Fav::class.java)
             startActivity(intent)
@@ -79,10 +79,10 @@ class DetailActivity : AppCompatActivity() {
                 db.webtoonDao().getWebtoonById(webtoonId)
             }
             if (webtoon != null) {
-                // Set the rating bar to the average rating
+
                 ratingBar.rating = webtoon.averageRating.toFloat()
             } else {
-                ratingBar.rating = 0f // Default to 0 if no rating found
+                ratingBar.rating = 0f
             }
         }
     }
@@ -97,10 +97,10 @@ class DetailActivity : AppCompatActivity() {
                 val totalRatings = it.ratingCount + 1
                 val averageRating = (it.averageRating * it.ratingCount + newRating) / totalRatings
 
-                // Update the webtoon object with new rating data
+
                 val updatedWebtoon = it.copy(averageRating = averageRating, ratingCount = totalRatings)
 
-                // Persist the updated webtoon to the database
+
                 withContext(Dispatchers.IO) {
                     db.webtoonDao().update(updatedWebtoon)
                 }
@@ -115,8 +115,8 @@ class DetailActivity : AppCompatActivity() {
             Log.d("DetailActivity", "Adding to favorites: $updatedWebtoon")
             withContext(Dispatchers.IO) {
                 db.webtoonDao().update(updatedWebtoon)
-                val checkWebtoon = db.webtoonDao().getWebtoonById(webtoon.id) // Verify if it's updated
-                Log.d("DetailActivity", "Webtoon after addition: $checkWebtoon") // Log to confirm it's updated
+                val checkWebtoon = db.webtoonDao().getWebtoonById(webtoon.id)
+                Log.d("DetailActivity", "Webtoon after addition: $checkWebtoon")
             }
         }
     }

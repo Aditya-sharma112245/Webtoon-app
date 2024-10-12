@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- FAVOURITES Title -->
+
     <TextView
         android:id="@+id/favourites_titles"
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:textAllCaps="true"
         android:layout_marginBottom="8dp" />
 
-    <!-- RecyclerView for Favorites -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_favorites"
         android:layout_width="match_parent"

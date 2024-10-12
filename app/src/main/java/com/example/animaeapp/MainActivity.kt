@@ -102,14 +102,14 @@ class MainActivity : AppCompatActivity() {
         webtoonRecyclerView.layoutManager = LinearLayoutManager(this)
         webtoonRecyclerView.adapter = webtoonAdapter
 
-        // Insert sample data into the database in a coroutine
+
         lifecycleScope.launch {
             insertWebtoons()
         }
     }
 
     private suspend fun insertWebtoons() {
-        withContext(Dispatchers.IO) { // Switch to IO dispatcher for database operations
+        withContext(Dispatchers.IO) {
             webtoons.forEach { webtoon ->
                 db.webtoonDao().insert(webtoon)
             }

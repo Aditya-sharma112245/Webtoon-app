@@ -46,16 +46,16 @@ abstract class WebtoonDatabase : RoomDatabase() {
                     )
                 """.trimIndent())
 
-                // Copy data from the old table to the new table
+
                 database.execSQL("""
                     INSERT INTO webtoon_new (id, title, imageUrl, averageRating, ratingCount, description, detailedDescription)
                     SELECT id, title, imageUrl, averageRating, ratingCount, description, detailedDescription FROM webtoon
                 """.trimIndent())
 
-                // Drop the old table
+
                 database.execSQL("DROP TABLE webtoon")
 
-                // Rename the new table to the original table name
+
                 database.execSQL("ALTER TABLE webtoon_new RENAME TO webtoon")
             }
         }

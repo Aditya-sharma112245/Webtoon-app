@@ -12,7 +12,7 @@ import androidx.room.Update
 interface WebtoonDao {
    fun insert(webtoon: Webtoon) {
         Log.d("WebtoonDao", "Inserting Webtoon: $webtoon")
-        // actual insert
+
     }
 
     @Update
