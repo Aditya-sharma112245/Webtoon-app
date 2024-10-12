@@ -97,21 +97,30 @@ class DetailActivity : AppCompatActivity() {
                 val totalRatings = it.ratingCount + 1
                 val averageRating = (it.averageRating * it.ratingCount + newRating) / totalRatings
 
-                // Update the database with the new average rating and count
+                // Update the webtoon object with new rating data
+                val updatedWebtoon = it.copy(averageRating = averageRating, ratingCount = totalRatings)
+
+                // Persist the updated webtoon to the database
                 withContext(Dispatchers.IO) {
-                    db.webtoonDao().updateRating(webtoonId, averageRating, totalRatings)
+                    db.webtoonDao().update(updatedWebtoon)
                 }
             }
         }
     }
 
+
     private fun addToFavorites(webtoon: Webtoon) {
         lifecycleScope.launch {
-            val favoriteWebtoon = webtoon.copy(isFavorite = true) // Ensure isFavorite is true
+            val updatedWebtoon = webtoon.copy(isFavorite = true)
+            Log.d("DetailActivity", "Adding to favorites: $updatedWebtoon")
             withContext(Dispatchers.IO) {
-                db.webtoonDao().insert(favoriteWebtoon) // Insert the webtoon into the favorites
-                Log.d("DetailActivity", "Added to favorites: $favoriteWebtoon") // Debugging log
+                db.webtoonDao().update(updatedWebtoon)
+                val checkWebtoon = db.webtoonDao().getWebtoonById(webtoon.id) // Verify if it's updated
+                Log.d("DetailActivity", "Webtoon after addition: $checkWebtoon") // Log to confirm it's updated
             }
         }
     }
+
+
+
 }

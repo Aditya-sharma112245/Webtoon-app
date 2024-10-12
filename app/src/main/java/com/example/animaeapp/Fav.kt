@@ -1,6 +1,7 @@
 package com.example.animaeapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,12 +44,15 @@ class Fav : AppCompatActivity() {
     private fun loadFavorites() {
         val db = WebtoonDatabase.getDatabase(applicationContext)
 
-        // Observe the LiveData from your DAO for favorite webtoons
+        Log.d("FavActivity", "Loading favorite webtoons from database")
         db.webtoonDao().getFavoriteWebtoons().observe(this, Observer { favoriteWebtoons ->
-            // Pass the favorite webtoons to the adapter if the list isn't null
+            Log.d("FavActivity", "Favorite webtoons loaded: $favoriteWebtoons") // Log the favorites retrieved
             if (favoriteWebtoons != null) {
                 webtoonAdapter.submitList(favoriteWebtoons)
+            } else {
+                Log.d("FavActivity", "No favorite webtoons found") // Log if the list is null
             }
         })
     }
+
 }

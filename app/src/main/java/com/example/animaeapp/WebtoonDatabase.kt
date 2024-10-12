@@ -21,7 +21,8 @@ abstract class WebtoonDatabase : RoomDatabase() {
                     context.applicationContext,
                     WebtoonDatabase::class.java,
                     "webtoon_database"
-                ).addMigrations(MIGRATION_1_2) // Add migration here
+                )
+                    .addMigrations(MIGRATION_1_2) // Ensure migration is added correctly
                     .build()
                 INSTANCE = instance
                 instance
@@ -31,7 +32,7 @@ abstract class WebtoonDatabase : RoomDatabase() {
         // Migration logic from version 1 to version 2
         private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // Create the new table with additional fields, including detailedDescription
+                // Create new table with additional fields
                 database.execSQL("""
                     CREATE TABLE IF NOT EXISTS `webtoon_new` (
                         `id` INTEGER PRIMARY KEY NOT NULL,
@@ -39,9 +40,9 @@ abstract class WebtoonDatabase : RoomDatabase() {
                         `imageUrl` TEXT NOT NULL,
                         `averageRating` REAL NOT NULL DEFAULT 0.0,
                         `ratingCount` INTEGER NOT NULL DEFAULT 0,
-                        `isFavorite` INTEGER NOT NULL DEFAULT 0, 
+                        `isFavorite` INTEGER NOT NULL DEFAULT 0,
                         `description` TEXT,
-                        `detailedDescription` TEXT // Add this line for detailedDescription
+                        `detailedDescription` TEXT
                     )
                 """.trimIndent())
 
@@ -60,4 +61,3 @@ abstract class WebtoonDatabase : RoomDatabase() {
         }
     }
 }
-

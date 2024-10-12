@@ -1,5 +1,6 @@
 package com.example.animaeapp.data
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -9,8 +10,10 @@ import androidx.room.Update
 
 @Dao
 interface WebtoonDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insert(webtoon: Webtoon)
+   fun insert(webtoon: Webtoon) {
+        Log.d("WebtoonDao", "Inserting Webtoon: $webtoon")
+        // actual insert
+    }
 
     @Update
    fun update(webtoon: Webtoon)
