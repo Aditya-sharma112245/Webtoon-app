@@ -10,6 +10,7 @@ import androidx.room.Update
 
 @Dao
 interface WebtoonDao {
+    @Insert
    fun insert(webtoon: Webtoon) {
         Log.d("WebtoonDao", "Inserting Webtoon: $webtoon")
 
